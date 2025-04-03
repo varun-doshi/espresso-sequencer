@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["DEV_MNEMONIC"],"enum":["Commands"],"mod":["claim","delegation","demo","deploy","l1","parse","registration"],"struct":["Config"]};
