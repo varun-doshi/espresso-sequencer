@@ -219,7 +219,7 @@ async fn init_consensus(
         stop_proposing_time: 0,
         start_voting_time: 0,
         stop_voting_time: 0,
-        epoch_height: 0,
+        epoch_height: hotshot_types::HotshotHeight::default(),
         epoch_start_block: 0,
     };
 
@@ -245,7 +245,7 @@ async fn init_consensus(
                 let storage: TestStorage<MockTypes> = TestStorage::default();
                 let coordinator = EpochMembershipCoordinator::new(
                     Arc::new(RwLock::new(membership)),
-                    config.epoch_height,
+                    config.epoch_height.value(),
                 );
 
                 SystemContext::init(

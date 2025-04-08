@@ -45,7 +45,7 @@ async fn test_catchup() {
         updown: NodeAction::Up,
     }];
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
     metadata.timing_data = timing_data;
 
     metadata.view_sync_properties =
@@ -102,7 +102,7 @@ async fn test_catchup_cdn() {
         idx: 18,
         updown: NodeAction::Up,
     }];
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
     metadata.timing_data = timing_data;
 
     metadata.spinning_properties = SpinningTaskDescription {
@@ -153,7 +153,7 @@ async fn test_catchup_one_node() {
         idx: 18,
         updown: NodeAction::Up,
     }];
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
     metadata.timing_data = timing_data;
 
     metadata.spinning_properties = SpinningTaskDescription {
@@ -194,6 +194,7 @@ async fn test_catchup_in_view_sync() {
         spinning_task::{ChangeNode, NodeAction, SpinningTaskDescription},
         test_builder::{TestDescription, TimingData},
     };
+    use hotshot_types::HotshotHeight;
     hotshot::helpers::initialize_logging();
 
     let timing_data = TimingData {
@@ -213,7 +214,7 @@ async fn test_catchup_in_view_sync() {
         },
     ];
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = HotshotHeight::default();
     metadata.timing_data = timing_data;
     metadata.view_sync_properties =
         hotshot_testing::view_sync_task::ViewSyncTaskDescription::Threshold(0, 20);
@@ -254,6 +255,7 @@ async fn test_catchup_reload() {
         spinning_task::{ChangeNode, NodeAction, SpinningTaskDescription},
         test_builder::{TestDescription, TimingData},
     };
+    use hotshot_types::HotshotHeight;
 
     hotshot::helpers::initialize_logging();
 
@@ -268,7 +270,7 @@ async fn test_catchup_reload() {
         updown: NodeAction::Up,
     }];
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height =  HotshotHeight::default();
     metadata.timing_data = timing_data;
     metadata.skip_late = true;
 
@@ -322,7 +324,7 @@ cross_tests!(
       }
 
       metadata.timing_data = timing_data;
-      metadata.test_config.epoch_height = 0;
+      metadata.test_config.epoch_height =  hotshot_types::HotshotHeight::default();
 
       metadata.spinning_properties = SpinningTaskDescription {
           // Restart all the nodes in view 13
@@ -377,7 +379,7 @@ cross_tests!(
       }
 
       metadata.timing_data = timing_data;
-      metadata.test_config.epoch_height = 0;
+      metadata.test_config.epoch_height =  hotshot_types::HotshotHeight::default();
 
       metadata.spinning_properties = SpinningTaskDescription {
           // Restart all the nodes in view 13
@@ -436,7 +438,7 @@ cross_tests!(
           updown: NodeAction::RestartDown(0),
       });
 
-      metadata.test_config.epoch_height = 0;
+      metadata.test_config.epoch_height =  hotshot_types::HotshotHeight::default();
 
 
       metadata.spinning_properties = SpinningTaskDescription {

@@ -87,7 +87,7 @@ pub fn default_hotshot_config<TYPES: NodeType>(
         stop_proposing_time: 0,
         start_voting_time: u64::MAX,
         stop_voting_time: 0,
-        epoch_height,
+        epoch_height: hotshot_types::HotshotHeight(epoch_height),
         epoch_start_block,
     }
 }
@@ -242,7 +242,7 @@ pub async fn create_test_handle<
 ) -> SystemContextHandle<TYPES, I, V> {
     let initializer = HotShotInitializer::<TYPES>::from_genesis::<V>(
         TestInstanceState::new(metadata.async_delay_config),
-        metadata.test_config.epoch_height,
+        metadata.test_config.epoch_height.value(),
         metadata.test_config.epoch_start_block,
         vec![],
     )
@@ -259,7 +259,7 @@ pub async fn create_test_handle<
     let private_key = validator_config.private_key.clone();
     let public_key = validator_config.public_key.clone();
     let state_private_key = validator_config.state_private_key.clone();
-    let membership_coordinator = EpochMembershipCoordinator::new(memberships, config.epoch_height);
+    let membership_coordinator = EpochMembershipCoordinator::new(memberships, config.epoch_height.value());
 
     let behaviour = (metadata.behaviour)(node_id);
     match behaviour {
@@ -451,7 +451,7 @@ impl<TYPES: NodeType, I: NodeImplementation<TYPES>, V: Versions> TestDescription
                 staked_nodes,
                 da_nodes,
                 self.test_config.num_bootstrap,
-                self.test_config.epoch_height,
+                self.test_config.epoch_height.value(),
                 self.test_config.epoch_start_block,
             ),
             ..self

@@ -127,7 +127,7 @@ impl From<HotShotConfig<SeqTypes>> for PublicHotShotConfig {
             stop_proposing_time,
             start_voting_time,
             stop_voting_time,
-            epoch_height,
+            epoch_height:epoch_height.value(),
             epoch_start_block,
         }
     }
@@ -156,7 +156,7 @@ impl PublicHotShotConfig {
             stop_proposing_time: self.stop_proposing_time,
             start_voting_time: self.start_voting_time,
             stop_voting_time: self.stop_voting_time,
-            epoch_height: self.epoch_height,
+            epoch_height: hotshot_types::HotshotHeight(self.epoch_height),
             epoch_start_block: self.epoch_start_block,
         }
     }

@@ -244,7 +244,7 @@ impl<TYPES: NodeType, I: NodeImplementation<TYPES>, V: Versions> CreateTaskState
             id: handle.hotshot.id,
             storage: Arc::clone(&handle.storage),
             upgrade_lock: handle.hotshot.upgrade_lock.clone(),
-            epoch_height: handle.hotshot.config.epoch_height,
+            epoch_height: handle.hotshot.config.epoch_height.value(),
             epoch_upgrade_block_height: handle.hotshot.config.epoch_start_block,
             staged_epoch_upgrade_certificate: None,
             consensus_metrics,
@@ -276,7 +276,7 @@ impl<TYPES: NodeType, I: NodeImplementation<TYPES>, V: Versions> CreateTaskState
             id: handle.hotshot.id,
             formed_upgrade_certificate: None,
             upgrade_lock: handle.hotshot.upgrade_lock.clone(),
-            epoch_height: handle.hotshot.config.epoch_height,
+            epoch_height: handle.hotshot.config.epoch_height.value(),
         }
     }
 }
@@ -301,7 +301,7 @@ impl<TYPES: NodeType, I: NodeImplementation<TYPES>, V: Versions> CreateTaskState
             spawned_tasks: BTreeMap::new(),
             id: handle.hotshot.id,
             upgrade_lock: handle.hotshot.upgrade_lock.clone(),
-            epoch_height: handle.hotshot.config.epoch_height,
+            epoch_height: handle.hotshot.config.epoch_height.value(),
         }
     }
 }
@@ -333,7 +333,7 @@ impl<TYPES: NodeType, I: NodeImplementation<TYPES>, V: Versions> CreateTaskState
             storage: Arc::clone(&handle.storage),
             id: handle.hotshot.id,
             upgrade_lock: handle.hotshot.upgrade_lock.clone(),
-            epoch_height: handle.hotshot.config.epoch_height,
+            epoch_height: handle.hotshot.config.epoch_height.value(),
             view_start_time: Instant::now(),
         }
     }

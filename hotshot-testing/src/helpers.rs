@@ -73,7 +73,7 @@ pub async fn build_system_handle<
     let builder: TestDescription<TYPES, I, V> = TestDescription::default_multiple_rounds();
 
     let launcher = builder.gen_launcher().map_hotshot_config(|hotshot_config| {
-        hotshot_config.epoch_height = 0;
+        hotshot_config.epoch_height = hotshot_types::HotshotHeight::default();
     });
     build_system_handle_from_launcher(node_id, &launcher).await
 }
@@ -105,7 +105,7 @@ pub async fn build_system_handle_from_launcher<
 
     let initializer = HotShotInitializer::<TYPES>::from_genesis::<V>(
         TestInstanceState::new(launcher.metadata.async_delay_config.clone()),
-        launcher.metadata.test_config.epoch_height,
+        launcher.metadata.test_config.epoch_height.value(),
         launcher.metadata.test_config.epoch_start_block,
         vec![],
     )
@@ -127,7 +127,7 @@ pub async fn build_system_handle_from_launcher<
         hotshot_config.known_da_nodes.clone(),
     )));
 
-    let coordinator = EpochMembershipCoordinator::new(memberships, hotshot_config.epoch_height);
+    let coordinator = EpochMembershipCoordinator::new(memberships, hotshot_config.epoch_height.value());
     let node_key_map = launcher.metadata.build_node_key_map();
 
     let (c, s, r) = SystemContext::init(

@@ -233,7 +233,7 @@ pub async fn main() -> Result<()> {
         },
         Commands::StakeForDemo { num_validators } => {
             tracing::info!("Staking for demo with {num_validators} validators");
-            stake_for_demo(&config, num_validators).await.unwrap();
+            // stake_for_demo(&config, num_validators).await.unwrap();
             return Ok(());
         },
         _ => unreachable!(),

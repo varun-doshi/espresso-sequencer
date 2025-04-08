@@ -40,7 +40,7 @@ async fn libp2p_network_sync() {
         ..TestDescription::default_multiple_rounds()
     };
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
 
     metadata
         .gen_launcher()
@@ -76,7 +76,7 @@ async fn test_memory_network_sync() {
         ..TestDescription::default()
     };
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
 
     metadata
         .gen_launcher()
@@ -115,7 +115,7 @@ async fn libp2p_network_async() {
         ..TestDescription::default_multiple_rounds()
     };
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
 
     metadata
         .gen_launcher()
@@ -163,7 +163,7 @@ async fn test_memory_network_async() {
         ..TestDescription::default()
     };
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
 
     metadata
         .gen_launcher()
@@ -216,7 +216,7 @@ async fn test_memory_network_partially_sync() {
         ..TestDescription::default()
     };
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
 
     metadata
         .gen_launcher()
@@ -256,7 +256,7 @@ async fn libp2p_network_partially_sync() {
         ..TestDescription::default_multiple_rounds()
     };
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
 
     metadata
         .gen_launcher()
@@ -297,7 +297,7 @@ async fn test_memory_network_chaos() {
         ..TestDescription::default()
     };
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
 
     metadata
         .gen_launcher()
@@ -333,7 +333,7 @@ async fn libp2p_network_chaos() {
         ..TestDescription::default_multiple_rounds()
     };
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
 
     metadata
         .gen_launcher()

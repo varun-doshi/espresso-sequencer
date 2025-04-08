@@ -302,7 +302,7 @@ impl<TYPES: NodeType, I: NodeImplementation<TYPES>, V: Versions> SystemContext<T
         let epoch = initializer.high_qc.data.block_number.map(|block_number| {
             TYPES::Epoch::new(epoch_from_block_number(
                 block_number + 1,
-                config.epoch_height,
+                config.epoch_height.value(),
             ))
         });
 
@@ -310,7 +310,7 @@ impl<TYPES: NodeType, I: NodeImplementation<TYPES>, V: Versions> SystemContext<T
             load_start_epoch_info(
                 membership_coordinator.membership(),
                 &initializer.start_epoch_info,
-                config.epoch_height,
+                config.epoch_height.value(),
                 config.epoch_start_block,
             )
             .await;
@@ -364,7 +364,7 @@ impl<TYPES: NodeType, I: NodeImplementation<TYPES>, V: Versions> SystemContext<T
             initializer.high_qc,
             initializer.next_epoch_high_qc,
             Arc::clone(&consensus_metrics),
-            config.epoch_height,
+            config.epoch_height.value(),
             initializer.state_cert,
         );
 
@@ -705,7 +705,7 @@ impl<TYPES: NodeType, I: NodeImplementation<TYPES>, V: Versions> SystemContext<T
             storage: Arc::clone(&self.storage),
             network: Arc::clone(&self.network),
             membership_coordinator: self.membership_coordinator.clone(),
-            epoch_height: self.config.epoch_height,
+            epoch_height: self.config.epoch_height.value(),
         };
 
         add_network_tasks::<TYPES, I, V>(&mut handle).await;
@@ -890,7 +890,7 @@ where
             storage: Arc::clone(&left_system_context.storage),
             network: Arc::clone(&left_system_context.network),
             membership_coordinator: left_system_context.membership_coordinator.clone(),
-            epoch_height,
+            epoch_height:epoch_height.value(),
         };
 
         let mut right_handle = SystemContextHandle {
@@ -902,7 +902,7 @@ where
             storage: Arc::clone(&right_system_context.storage),
             network: Arc::clone(&right_system_context.network),
             membership_coordinator: right_system_context.membership_coordinator.clone(),
-            epoch_height,
+            epoch_height:epoch_height.value(),
         };
 
         // add consensus tasks to each handle, using their individual internal event streams

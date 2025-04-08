@@ -11,8 +11,7 @@ use url::Url;
 use vec1::Vec1;
 
 use crate::{
-    constants::REQUEST_DATA_DELAY, upgrade_config::UpgradeConfig, HotShotConfig, NodeType,
-    PeerConfig, ValidatorConfig,
+    constants::REQUEST_DATA_DELAY, upgrade_config::UpgradeConfig, HotShotConfig, HotshotHeight, NodeType, PeerConfig, ValidatorConfig
 };
 
 /// Default builder URL, used as placeholder
@@ -85,7 +84,7 @@ impl<TYPES: NodeType> From<HotShotConfigFile<TYPES>> for HotShotConfig<TYPES> {
             stop_proposing_time: val.upgrade.stop_proposing_time,
             start_voting_time: val.upgrade.start_voting_time,
             stop_voting_time: val.upgrade.stop_voting_time,
-            epoch_height: val.epoch_height,
+            epoch_height: HotshotHeight(val.epoch_height),
             epoch_start_block: val.epoch_start_block,
         }
     }

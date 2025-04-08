@@ -361,7 +361,7 @@ where
             storage: Arc::clone(&hotshot.storage),
             network: Arc::clone(&hotshot.network),
             membership_coordinator: memberships.clone(),
-            epoch_height,
+            epoch_height: epoch_height.value(),
         };
 
         add_consensus_tasks::<TYPES, I, V>(&mut handle).await;

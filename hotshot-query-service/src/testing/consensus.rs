@@ -157,7 +157,7 @@ impl<D: DataSourceLifeCycle + UpdateStatusData, V: Versions> MockNetwork<D, V> {
             stop_proposing_time: 0,
             start_voting_time: 0,
             stop_voting_time: 0,
-            epoch_height: EPOCH_HEIGHT,
+            epoch_height: hotshot_types::HotshotHeight(EPOCH_HEIGHT),
             epoch_start_block: 0,
         };
         update_config(&mut config);
@@ -199,7 +199,7 @@ impl<D: DataSourceLifeCycle + UpdateStatusData, V: Versions> MockNetwork<D, V> {
                             .await
                             .set_first_epoch(ViewNumber::new(0), INITIAL_DRB_RESULT);
                         let memberships =
-                            EpochMembershipCoordinator::new(membership, config.epoch_height);
+                            EpochMembershipCoordinator::new(membership, config.epoch_height.value());
 
                         let hotshot = SystemContext::init(
                             pub_keys[node_id],

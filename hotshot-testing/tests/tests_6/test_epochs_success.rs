@@ -41,7 +41,7 @@ cross_tests!(
             ..TestDescription::default()
         };
 
-        metadata.test_config.epoch_height = 10;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight(10);
 
         metadata
     },
@@ -93,7 +93,7 @@ cross_tests!(
             ..TestDescription::default()
         };
 
-        metadata.test_config.epoch_height = 10;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight(10);
         metadata.overall_safety_properties.num_successful_views = 50;
         let mut config = DelayConfig::default();
         let delay_settings = DelaySettings {
@@ -125,7 +125,7 @@ cross_tests!(
             ..TestDescription::default()
         };
 
-        metadata.test_config.epoch_height = 10;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight(10);
         metadata.overall_safety_properties.num_successful_views = 30;
         let mut config = DelayConfig::default();
         let mut delay_settings = DelaySettings {
@@ -157,7 +157,7 @@ cross_tests!(
     Metadata: {
         let mut metadata = TestDescription::default_more_nodes().set_num_nodes(12,12);
         metadata.test_config.num_bootstrap = 10;
-        metadata.test_config.epoch_height = 10;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight(10);
 
         metadata.view_sync_properties = ViewSyncTaskDescription::Threshold(0, 0);
 
@@ -181,7 +181,7 @@ cross_tests!(
             ..TestDescription::default()
         }.set_num_nodes(11,11);
 
-        metadata.test_config.epoch_height = 10;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight(10);
 
         metadata
     },
@@ -213,7 +213,7 @@ cross_tests!(
             },
 
         ];
-        metadata.test_config.epoch_height = 10;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight(10);
         metadata.spinning_properties = SpinningTaskDescription {
             node_changes: vec![(1, dead_nodes)]
         };
@@ -244,7 +244,7 @@ cross_tests!(
 
         // Keep going until the 2nd epoch transition
         metadata.overall_safety_properties.num_successful_views = 110;
-        metadata.test_config.epoch_height = 50;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight(50);
 
         metadata
     },

@@ -43,7 +43,7 @@ cross_tests!(
             behaviour,
             ..TestDescription::default()
         };
-        metadata.test_config.epoch_height = 0;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
 
         metadata
     },
@@ -73,7 +73,7 @@ cross_tests!(
             ..TestDescription::default()
         }.set_num_nodes(12,12);
 
-        metadata.test_config.epoch_height = 0;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
         metadata.overall_safety_properties.num_successful_views = 10;
         metadata.overall_safety_properties.expected_view_failures = vec![3, 4];
         metadata.overall_safety_properties.decide_timeout = Duration::from_secs(12);
@@ -113,7 +113,7 @@ cross_tests!(
             ..TestDescription::default()
         }.set_num_nodes(5,5);
 
-        metadata.test_config.epoch_height = 0;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
         metadata.overall_safety_properties.expected_view_failures = vec![6, 7, 11, 12];
         metadata.overall_safety_properties.decide_timeout = Duration::from_secs(20);
 
@@ -151,7 +151,7 @@ cross_tests!(
             ..TestDescription::default()
         }.set_num_nodes(10,10);
 
-        metadata.test_config.epoch_height = 0;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
         metadata
     },
 );
@@ -192,7 +192,7 @@ cross_tests!(
             ..TestDescription::default()
         }.set_num_nodes(nodes_count, nodes_count);
 
-        metadata.test_config.epoch_height = 0;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
         metadata
     },
 );
@@ -234,7 +234,7 @@ cross_tests!(
             ..TestDescription::default()
         }.set_num_nodes(10,10);
 
-        metadata.test_config.epoch_height = 0;
+        metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
         metadata.overall_safety_properties.expected_view_failures = vec![13, 14];
         metadata.overall_safety_properties.decide_timeout = Duration::from_secs(12);
         metadata

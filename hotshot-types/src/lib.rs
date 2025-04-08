@@ -68,6 +68,15 @@ where
     assert_future::<F::Output, _>(Box::pin(fut))
 }
 
+#[derive(Clone, Debug, Default, Display, Copy, serde::Serialize, serde::Deserialize)]
+pub struct HotshotHeight(pub u64);
+
+impl HotshotHeight {
+    pub fn value(&self) -> u64 {
+        self.0
+    }
+}
+
 #[derive(Clone, Debug, Display)]
 /// config for validator, including public key, private key, stake value
 pub struct ValidatorConfig<TYPES: NodeType> {
@@ -232,7 +241,7 @@ pub struct HotShotConfig<TYPES: NodeType> {
     /// Unix time in seconds at which we stop voting on an upgrade. To prevent voting on an upgrade, set stop_voting_time <= start_voting_time.
     pub stop_voting_time: u64,
     /// Number of blocks in an epoch, zero means there are no epochs
-    pub epoch_height: u64,
+    pub epoch_height: HotshotHeight,
     /// Epoch start block   
     #[serde(default = "default_epoch_start_block")]
     pub epoch_start_block: u64,

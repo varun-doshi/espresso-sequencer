@@ -179,7 +179,7 @@ where
         }
 
         let spinning_task_state = SpinningTask {
-            epoch_height: launcher.metadata.test_config.epoch_height,
+            epoch_height: launcher.metadata.test_config.epoch_height.value(),
             epoch_start_block: launcher.metadata.test_config.epoch_start_block,
             start_epoch_info: Vec::new(), // #2652 REVIEW NOTE: Same as other instances of start_epoch_info
             handles: Arc::clone(&handles),
@@ -468,7 +468,7 @@ where
                 } else {
                     let initializer = HotShotInitializer::<TYPES>::from_genesis::<V>(
                         TestInstanceState::new(self.launcher.metadata.async_delay_config.clone()),
-                        config.epoch_height,
+                        config.epoch_height.value(),
                         config.epoch_start_block,
                         vec![InitializerEpochInfo::<TYPES> {
                             epoch: TYPES::Epoch::new(1),
@@ -612,7 +612,7 @@ where
             state_private_key,
             node_id,
             config,
-            EpochMembershipCoordinator::new(Arc::new(RwLock::new(memberships)), epoch_height),
+            EpochMembershipCoordinator::new(Arc::new(RwLock::new(memberships)), epoch_height.value()),
             network,
             initializer,
             ConsensusMetricsValue::default(),
@@ -653,7 +653,7 @@ where
             state_private_key,
             node_id,
             config,
-            EpochMembershipCoordinator::new(memberships, epoch_height),
+            EpochMembershipCoordinator::new(memberships, epoch_height.value()),
             network,
             initializer,
             ConsensusMetricsValue::default(),

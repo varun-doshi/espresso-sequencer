@@ -364,7 +364,7 @@ pub trait RunDa<
     ) -> SystemContextHandle<TYPES, NODE, V> {
         let initializer = hotshot::HotShotInitializer::<TYPES>::from_genesis::<V>(
             TestInstanceState::default(),
-            self.config().config.epoch_height,
+            self.config().config.epoch_height.value(),
             self.config().config.epoch_start_block,
             vec![],
         )
@@ -394,7 +394,7 @@ pub trait RunDa<
             state_sk,
             config.node_index,
             config.config,
-            EpochMembershipCoordinator::new(membership, epoch_height),
+            EpochMembershipCoordinator::new(membership, epoch_height.value()),
             Arc::from(network),
             initializer,
             ConsensusMetricsValue::default(),

@@ -39,7 +39,7 @@ async fn push_cdn_network() {
         ..TestDescription::default()
     };
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
 
     metadata
         .gen_launcher()

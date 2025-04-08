@@ -44,7 +44,7 @@ async fn test_combined_network() {
         ..TestDescription::default_multiple_rounds()
     };
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
     metadata
         .gen_launcher()
         .launch()
@@ -85,7 +85,7 @@ async fn test_combined_network_cdn_crash() {
         });
     }
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
     metadata.spinning_properties = SpinningTaskDescription {
         node_changes: vec![(5, all_nodes)],
     };
@@ -137,7 +137,7 @@ async fn test_combined_network_reup() {
         });
     }
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
     metadata.spinning_properties = SpinningTaskDescription {
         node_changes: vec![(13, all_up), (5, all_down)],
     };
@@ -183,7 +183,7 @@ async fn test_combined_network_half_dc() {
         });
     }
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
     metadata.spinning_properties = SpinningTaskDescription {
         node_changes: vec![(5, half)],
     };
@@ -245,7 +245,7 @@ async fn test_stress_combined_network_fuzzy() {
     }
     .set_num_nodes(20, 20);
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
     metadata.spinning_properties = SpinningTaskDescription {
         node_changes: generate_random_node_changes(
             metadata.test_config.num_nodes_with_stake.into(),

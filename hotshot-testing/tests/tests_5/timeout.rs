@@ -33,7 +33,7 @@ async fn test_timeout() {
         updown: NodeAction::Down,
     }];
 
-    metadata.test_config.epoch_height = 0;
+    metadata.test_config.epoch_height = hotshot_types::HotshotHeight::default();
     metadata.timing_data = timing_data;
 
     metadata.overall_safety_properties = OverallSafetyPropertiesDescription {

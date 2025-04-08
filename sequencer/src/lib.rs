@@ -366,7 +366,7 @@ pub async fn init_node<P: SequencerPersistence + MembershipPersistence, V: Versi
 
     let epoch_height = genesis.epoch_height.unwrap_or_default();
     tracing::info!("setting epoch height={epoch_height:?}");
-    network_config.config.epoch_height = epoch_height;
+    network_config.config.epoch_height = hotshot_types::HotshotHeight(epoch_height);
 
     // If the `Libp2p` bootstrap nodes were supplied via the command line, override those
     // present in the config file.
@@ -490,7 +490,7 @@ pub async fn init_node<P: SequencerPersistence + MembershipPersistence, V: Versi
 
     let membership: Arc<RwLock<EpochCommittees>> = Arc::new(RwLock::new(membership));
     let coordinator =
-        EpochMembershipCoordinator::new(membership, network_config.config.epoch_height);
+        EpochMembershipCoordinator::new(membership, network_config.config.epoch_height.value());
 
     let instance_state = NodeState {
         chain_config: genesis.chain_config,
@@ -763,7 +763,7 @@ pub mod testing {
         }
 
         pub fn epoch_height(mut self, epoch_height: u64) -> Self {
-            self.config.epoch_height = epoch_height;
+            self.config.epoch_height = hotshot_types::HotshotHeight(epoch_height);
             self
         }
 
@@ -1014,7 +1014,7 @@ pub mod testing {
             )
             .with_current_version(V::Base::version())
             .with_genesis(state)
-            .with_epoch_height(config.epoch_height)
+            .with_epoch_height(config.epoch_height.value())
             .with_upgrades(upgrades);
 
             tracing::info!(
